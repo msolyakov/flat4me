@@ -1,0 +1,27 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="RabbitFacade" GeneratedClassName="RabbitClientConfig">
+  <Profiles />
+  <Settings>
+    <Setting Name="RabbitHost" Type="System.String" Scope="User">
+      <Value Profile="(Default)">f4me-dev-01.cloudapp.net</Value>
+    </Setting>
+    <Setting Name="RabbitPort" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="RabbitUser" Type="System.String" Scope="User">
+      <Value Profile="(Default)">f4rabbit</Value>
+    </Setting>
+    <Setting Name="RabbitPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1qaz@WSX3edc</Value>
+    </Setting>
+    <Setting Name="Queue_ImagesToProcess" Type="System.String" Scope="User">
+      <Value Profile="(Default)">imagesToProcess</Value>
+    </Setting>
+    <Setting Name="Queue_EmailsToSend" Type="System.String" Scope="User">
+      <Value Profile="(Default)">emailsToSend</Value>
+    </Setting>
+    <Setting Name="DefaultVirtualHost" Type="System.String" Scope="User">
+      <Value Profile="(Default)">/</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

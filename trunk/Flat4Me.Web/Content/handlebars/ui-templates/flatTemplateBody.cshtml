@@ -1,0 +1,740 @@
+﻿<script id="flatTemplateBody" type="text/x-handlebars-template">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-sm-offset-1 col-lg-6 col-lg-offset-2">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h2>
+                            {{Flat.Name}}
+                            {{!-- Click here to go to map --}}
+                            <small data-target="#carousel-example-generic" data-slide-to="0" style="cursor:pointer;">
+                                {{Flat.CityName}} {{Flat.StreetName}} {{Flat.HouseNumber}}
+                            </small>
+                        </h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3 accview-bottom-icon"
+                         data-toggle="tooltip"
+                         data-placement="top"
+                         data-original-title="Кол-во комнат {{Flat.RoomCount}}">
+                        <span class="fa fa-home fa-2x" aria-hidden="true"></span>
+                        <br />
+                        <span class="fa">{{Flat.RoomCount}} комната</span>
+                    </div>
+                    <div class="col-xs-3 accview-bottom-icon"
+                         data-toggle="tooltip"
+                         data-placement="top"
+                         data-original-title="{{Flat.BedroomCount}} спальная комната Спальных мест {{Flat.SleepsCount}}">
+                        <span class="fa fa-hotel fa-2x" aria-hidden="true"></span>
+                        <br />
+                        <span class="fa">{{Flat.SleepsCount}}</span>
+                    </div>
+                    <div class="col-xs-3 accview-bottom-icon"
+                         data-toggle="tooltip"
+                         data-placement="top"
+                         data-original-title="Максимальное кол-во гостей">
+                        <span class="fa fa-male fa-2x" aria-hidden="true"></span>
+                        <br />
+                        <span class="fa">для {{Flat.MaxGuestsCount}} гостя</span>
+                    </div>
+                    <div class="col-xs-3 accview-bottom-icon"
+                         data-toggle="tooltip"
+                         data-placement="top"
+                         data-original-title="Минимальный срок проживания (суток)">
+                        <span class="fa fa-moon-o fa-2x"></span>
+                        <br />
+                        <span id="MinDurationDays" class="fa" data-value="{{Flat.MinDurationDays}}">от {{Flat.MinDurationDays}}-х суток</span>
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="row visible-xs">
+                    <div class="col-xs-12">
+                        <ul class="list-unstyled">
+                            {{#each PriceList}}
+                            <li>от <b>{{DurationDays}}</b> суток {{Amount}}<span class="fa fa-rub"></span></li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p class="lead">Инфраструктура</p>
+                        <p>{{Flat.Infrastructure}}</p>
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p class="lead">Удобства</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+
+                        {{!-- Left column --}}
+                        <div class="col-xs-6">
+                            {{#if Flat.HasInternet}}
+                            <div class="row icon-text-container"
+                                 data-toggle="tooltip"
+                                 data-placement="top"
+                                 data-original-title="{{#if Flat.HasWiFi}}Беспроводной интернет{{else}}Кабельный интернет{{/if}}">
+                                <div class="col-xs-4 icon-center">
+                                    {{#if Flat.HasWiFi}}
+                                    <span class="fa fa-wifi fa-2x">
+                                    </span>
+                                    {{else}}
+                                    <span class="fa fa-globe fa-2x">
+                                    </span>
+                                    {{/if}}
+                                </div>
+                                <div class="col-xs-8">
+                                    {{#if Flat.HasWiFi}}Wi-Fi{{else}}Интернет{{/if}}
+                                </div>
+                            </div>
+                            {{/if}}
+                            {{#if Flat.IsPrivateAllowed}}
+                            <div class="row icon-text-container"
+                                 data-toggle="tooltip"
+                                 data-placement="top"
+                                 data-original-title="Секс-секс-секс">
+                                <div class="col-xs-4 icon-center">
+                                    <span class="fa fa-heart fa-2x">
+                                    </span>
+                                </div>
+                                <div class="col-xs-8">
+                                    Возможно для встреч
+                                </div>
+                            </div>
+                            {{/if}}
+                            {{#if Flat.IsPhotoSessionAllowed}}
+                            <div class="row icon-text-container"
+                                 data-toggle="tooltip"
+                                 data-placement="top"
+                                 data-original-title="В квартира есть все необходимое для проведения фотосессий">
+                                <div class="col-xs-4 icon-center">
+                                    <span class="fa fa-camera-retro fa-2x">
+                                    </span>
+                                </div>
+                                <div class="col-xs-8">
+                                    Возможно для проведения фотосессий
+                                </div>
+                            </div>
+                            {{/if}}
+
+                        </div>
+
+                        {{!-- Right column --}}
+                        <div class="col-xs-6">
+
+                            {{#if Flat.HasParking}}
+                            <div class="row icon-text-container">
+                                <div class="col-xs-4 icon-center">
+                                    <span class="fa fa-car fa-2x">
+                                    </span>
+                                </div>
+                                <div class="col-xs-8">
+                                    Парковка
+                                </div>
+                            </div>
+                            {{/if}}
+                            {{#if Flat.HasSecurity}}
+                            <div class="row icon-text-container">
+                                <div class="col-xs-4 icon-center">
+                                    <span class="fa fa-shield fa-2x">
+                                    </span>
+                                </div>
+                                <div class="col-xs-8">
+                                    Охраняется
+                                </div>
+                            </div>
+                            {{/if}}
+
+                            <div class="row icon-text-container"
+                                 style="cursor:pointer; color:#f0ad4e;"
+                                 data-toggle="collapse" href="#moreComfort"
+                                 aria-expanded="false" aria-controls="moreComfort">
+                                <div class="col-xs-4 icon-center">
+                                    <span class="fa fa-bars fa-2x">
+                                    </span>
+                                </div>
+                                <div class="col-xs-8">
+                                    <strong>Еще</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="collapse" id="moreComfort">
+                            <div class="jumbotron">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <ul>
+                                            {{#if Flat.HasMicrowave}}
+                                            <li>
+                                                Микроволновка
+                                            </li>
+                                            {{/if}}
+                                            {{#if Flat.HasAirConditioning}}
+                                            <li>
+                                                Кондиционер
+                                            </li>
+                                            {{/if}}
+                                            {{#if Flat.HasWashingMachine}}
+                                            <li>
+                                                Стиральная машина
+                                            </li>
+                                            {{/if}}
+                                            {{#if Flat.HasElectricKettle}}
+                                            <li>
+                                                Электрочайник
+                                            </li>
+                                            {{/if}}
+                                            {{#if Flat.HasRefrigerator}}
+                                            <li>
+                                                Холодильник
+                                            </li>
+                                            {{/if}}
+                                            {{#if Flat.HasKitchen}}
+                                            <li>
+                                                Кухня
+                                            </li>
+                                            {{/if}}
+                                            {{#if Flat.HasElevator}}
+                                            <li>
+                                                Лифт
+                                            </li>
+                                            {{/if}}
+                                            {{#if Flat.HasJacuzzi}}
+                                            <li>
+                                                Джакуззи
+                                            </li>
+                                            {{/if}}
+                                            {{#if Flat.HasGasWaterHeater}}
+                                            <li>
+                                                Газовый водонагреватель
+                                            </li>
+                                            {{/if}}
+                                            {{#if Flat.HasElectricWaterHeater}}
+                                            <li>
+                                                Электроводонагреватель
+                                            </li>
+                                            {{/if}}
+                                        </ul>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <ul>
+                                            {{#if Flat.HasTV}}
+                                            <li>
+                                                {{#if Flat.HasTVCable}}
+                                                Кабельное ТВ
+                                                {{else}}
+                                                ТВ
+                                                {{/if}}
+                                            </li>
+                                            {{/if}}
+                                            {{#if Flat.HasHairDryer}}
+                                            <li>
+                                                Фен
+                                            </li>
+                                            {{/if}}
+                                            {{#if Flat.HasIron}}
+                                            <li>
+                                                Утюг
+                                            </li>
+                                            {{/if}}
+                                            {{#if Flat.HasDish}}
+                                            <li>
+                                                Посуда
+                                            </li>
+                                            {{/if}}
+                                            {{#if Flat.HasDishwasher}}
+                                            <li>
+                                                Посудомоечная машина
+                                            </li>
+                                            {{/if}}
+                                            {{#if Flat.HasIntercom}}
+                                            <li>
+                                                Домофон
+                                            </li>
+                                            {{/if}}
+                                            {{#if Flat.HasConcierge}}
+                                            <li>
+                                                Консьерж
+                                            </li>
+                                            {{/if}}
+                                            {{#if Flat.HasToiletries}}
+                                            <li>
+                                                Туалетные принадлежности
+                                            </li>
+                                            {{/if}}
+
+                                            {{#if Flat.IsSmokingAllowed}}
+                                            <li>
+                                                Можно курить
+                                            </li>
+                                            {{/if}}
+                                            {{#if Flat.IsAnimalsAllowed}}
+                                            <li>
+                                                Можно с животным
+                                            </li>
+                                            {{/if}}
+                                            {{#if Flat.IsHypoallergenic}}
+                                            <li>
+                                                Гипоаллергенное жилье
+                                            </li>
+                                            {{/if}}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p class="lead">Мебель</p>
+                        <p>{{Flat.Furniture}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="hidden-xs">
+                <div class="col-sm-3 col-lg-2">
+                    <div id="reservationPanel">
+                        <div style="width:300px; border:1px solid #dce0e0; border-radius:3px;">
+                            {{#if HasReservation}}
+                            {{!-- Show current reservation info --}}
+
+                            <div>
+                                <div class="row" style="margin-left:0px; margin-right:0px; background-color:rgba(237, 237, 237, 1)">
+                                    <div class="col-sm-12 text-center">
+                                        <h3 style="margin-top:5px; margin-bottom:5px;">
+                                            Ваш отельер
+                                        </h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-8">
+                                            <address>
+                                                <br />
+                                                <strong>{{HotelierContacts.FirstName}}</strong><br />
+                                                +7 {{HotelierContacts.PhoneNumber}}<br />
+                                                <a href="mailto:{{HotelierContacts.Email}}">{{HotelierContacts.Email}}</a>
+                                            </address>
+                                        </div>
+                                        <div class="col-sm-4" style="padding:5px;">
+                                            <img class="img-responsive img-rounded" src="{{HotelierContacts.PhotoTinyPath}}" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row" style="margin-left:0px; margin-right:0px; background-color:rgba(237, 237, 237, 1)">
+                                    <div class="col-sm-12 text-center">
+                                        <h3 style="margin-top:5px; margin-bottom:5px;">
+                                            Ваша бронь
+                                        </h3>
+                                    </div>
+                                </div>
+
+                                <div class="row" style="margin-top:5px; margin-bottom:5px;">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-6 text-center" style="padding-right:2px;">
+                                            <h4 style="margin:0px;">
+                                                Заезд
+                                            </h4>
+                                            <small>После {{HotelierProfile.CheckinFromString}}</small>
+                                        </div>
+                                        <div class="col-sm-6 text-center" style="padding-left:2px;">
+                                            <h4 style="margin:0px;">
+                                                Выезд
+                                            </h4>
+                                            <small>До {{HotelierProfile.CheckoutToString}}</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div id="accommodationDatepicker">
+                                            <div class="col-sm-6" style="padding-right:2px;">
+                                                <div class="form-control">{{CurrentReservation.CheckinString}}</div>
+                                            </div>
+                                            <div class="col-sm-6" style="padding-left:2px;">
+                                                <div class="form-control">{{CurrentReservation.CheckoutString}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row" style="margin-top:5px; margin-bottom:5px;">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-6 text-center" style="padding-right:2px;">
+                                            <div class="form-control">Гостей {{CurrentReservation.Guests}}</div>
+                                        </div>
+                                        <div class="col-sm-6 text-center" style="padding-left:2px;"
+                                             data-toggle="tooltip"
+                                             data-placement="left"
+                                             data-original-title="Всего суток">
+                                            <div class="form-control">Суток {{CurrentReservation.TotalDays}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row"
+                                     data-toggle="tooltip"
+                                     data-placement="left"
+                                     data-original-title="Стоимость проживания составит">
+                                    <div class="col-sm-12">
+                                        <p class="lead" style="margin:0px 15px 5px 15px;">
+                                            <span class="fa fa-question-circle"></span> Аренда
+                                            <span class="pull-right"><span>{{CurrentReservation.EstimatedAmount}}</span> <span class="fa fa-rub"></span></span>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="row" style="margin-top:5px; margin-bottom:5px;">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-4 text-right">
+                                            <label>Имя</label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <p class="text-center" id="FirstName"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top:5px; margin-bottom:5px;">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-4 text-right">
+                                            <label>Фамилия</label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <p class="text-center" id="LastName"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top:5px; margin-bottom:5px;">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-4 text-right">
+                                            <label>Тел.</label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <p class="text-center" id="PhoneNumber"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top:5px; margin-bottom:5px;">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-4 text-right">
+                                            <label>Email</label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <p class="text-center" id="Email"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{!--
+                                <div class="row" style="margin-bottom:15px;">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-12">
+                                            <a class="btn btn-block btn-warning" id="reservationCancelBtn"
+                                               onclick="Accommodation.cancelReservation();" role="button">Отменить</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                --}}
+                            </div>
+
+                            {{else}}
+                            {{!-- RESERVATION FORM --}}
+
+                            <form id="reservationForm">
+                                <input type="hidden" id="AccommodationId" name="AccommodationId" />
+
+                                <div class="row" style="margin-left:0px; margin-right:0px; background-color:rgba(237, 237, 237, 1)">
+                                    <div class="col-sm-12 text-center"
+                                         data-toggle="popover"
+                                         data-placement="left"
+                                         title="Стоимость"
+                                         data-content='{{#each PriceList}}{{> flatPriceItemTemplate}}{{/each}}'>
+                                        <h3 style="margin-top:5px; margin-bottom:5px;">
+                                            <span class="fa fa-question-circle"></span>  от {{PriceMin.Amount}} <span class="fa fa-rub"></span>
+                                        </h3>
+                                    </div>
+                                </div>
+
+                                <div class="row" style="margin-top:5px; margin-bottom:5px;">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-6 text-center" style="padding-right:2px;">
+                                            <h4 style="margin:0px;">
+                                                Заезд
+                                            </h4>
+                                            <small>После {{HotelierProfile.CheckinFromString}}</small>
+                                        </div>
+                                        <div class="col-sm-6 text-center" style="padding-left:2px;">
+                                            <h4 style="margin:0px;">
+                                                Выезд
+                                            </h4>
+                                            <small>До {{HotelierProfile.CheckoutToString}}</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div id="accommodationDatepicker">
+                                            <div class="col-sm-6" style="padding-right:2px;">
+                                                <input type="hidden" name="Checkin" />
+                                                <input id="checkin" class="form-control actual_range text-center" type="text" />
+                                            </div>
+                                            <div class="col-sm-6" style="padding-left:2px;">
+                                                <input type="hidden" name="Checkout" />
+                                                <input id="checkout" class="form-control actual_range text-center" type="text" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row" style="margin-top:5px; margin-bottom:5px;">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-6 text-center" style="padding-right:2px;">
+                                            <select class="form-control" name="Guests">
+                                                <option value="1">&nbsp;1 гость</option>
+                                                <option value="2">&nbsp;2 гостя</option>
+                                                <option value="3">&nbsp;3 гостя</option>
+                                                <option value="4">&nbsp;4 гостя</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-6 text-center" style="padding-left:2px;">
+                                            <span id="accommotationTotalDays" class="form-control">
+                                                1
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row"
+                                     id="AmountWithoutDiscount"
+                                     style="display:none;"
+                                     data-toggle="tooltip"
+                                     data-placement="left"
+                                     data-original-title="Стоимость проживания без скидки">
+                                    <div class="col-sm-12">
+                                        <s style="margin:0px 15px 5px 15px;">
+                                            <span class="fa fa-question-circle"></span>
+                                            <s id="AmountDetailsWithoutDiscount"></s>
+                                            <s class="pull-right">
+                                                <s id="EstimatedAmountWithoutDiscount">20000</s><span class="fa fa-rub"></span>
+                                            </s>
+                                        </s>
+                                    </div>
+                                </div>
+
+                                <div class="row"
+                                     id="AmountDiscount"
+                                     style="display:none;"
+                                     data-toggle="tooltip"
+                                     data-placement="left"
+                                     data-original-title="Скидка считается исходя из кол-ва дней проживания">
+                                    <div class="col-sm-12">
+                                        <p style="margin:0px 15px 5px 15px;">
+                                            <span class="fa fa-question-circle"></span>
+                                            Скидка
+                                            <span class="pull-right">
+                                                <span id="EstimatedAmountDiscount">1500</span><span class="fa fa-rub"></span>
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="row"
+                                     data-toggle="tooltip"
+                                     data-placement="left"
+                                     data-original-title="Стоимость проживания составит">
+                                    <div class="col-sm-12">
+                                        <input type="hidden" name="EstimatedAmount" value="1500" />
+                                        <p class="lead" style="margin:0px 15px 5px 15px;">
+                                            <span class="fa fa-question-circle"></span>
+                                            <span id="AmountDetails"></span>
+                                            <span class="pull-right">
+                                                <span id="EstimatedAmount">1500</span><span class="fa fa-rub"></span>
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+
+
+                                <div class="row" style="margin-bottom:15px;">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-12">
+                                            <a class="btn btn-block btn-warning" role="button" id="reservationReservBtn"
+                                               onclick="Accommodation.makeReservation();">Забронировать</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{!-- NEW GUEST BLOCK--}}
+                                <div class="collapse" id="newGuestBlock">
+                                    <hr />
+                                    <div class="row" style="margin-top:5px; margin-bottom:5px;"
+                                         data-toggle="tooltip"
+                                         data-placement="left"
+                                         data-original-title="Имя">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-12">
+                                                <input type="text" class="form-control" name="FirstName" placeholder="Имя" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="margin-top:5px; margin-bottom:5px;"
+                                         data-toggle="tooltip"
+                                         data-placement="left"
+                                         data-original-title="Фамилия">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-12">
+                                                <input type="text" class="form-control" name="LastName" placeholder="Фамилия" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="margin-top:5px; margin-bottom:5px;"
+                                         data-toggle="tooltip"
+                                         data-placement="left"
+                                         data-original-title="Телефон без 8 и +7">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-12">                                                
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">+7</div>                                                    
+                                                    <input type="tel" class="form-control" name="PhoneNumber" placeholder="Телефон без 8 и +7" />                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="margin-top:5px; margin-bottom:5px;"
+                                         data-toggle="tooltip"
+                                         data-placement="left"
+                                         data-original-title="Email">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-12">
+                                                <input type="email" class="form-control" name="Email" placeholder="Email" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="margin-bottom:15px;">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-12">
+                                                <a class="btn btn-block btn-success" id="reservationAcceptBtn"
+                                                   onclick="Accommodation.confirmGuest();" role="button">Подтвердить</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="collapse" id="phoneConfirmationBlock">
+                                    <div class="row" style="margin-top:5px; margin-bottom:5px;">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-12">
+                                                <div>
+                                                    <input type="text" class="form-control" id="Code" placeholder="Код из смс" />
+                                                </div>
+                                                <div>
+                                                    <a onclick="Accommodation.sendNewConfirmationCode()" style="color:black;">
+                                                        <small>Выслать код еще раз</small>
+                                                        <small id="sendNewCodeAfterBlock"> через <span id="sendNewCodeAfter">300</span> сек.</small>
+                                                        <i id="sendNewConfirmationCodeSpin" class="fa fa-circle-o-notch fa-spin" style="display:none;"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="margin-bottom:15px;">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-12">
+                                                <a class="btn btn-block btn-success" id="reservationAcceptBtn"
+                                                   onclick="Accommodation.confirmPhoneNumber();" role="button">Подтвердить</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="collapse" id="reservationConfirmationBlock">
+
+                                    <div class="row" style="margin-top:5px; margin-bottom:5px;">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-4 text-right">
+                                                <label>Имя</label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <p class="text-center" id="FirstName"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="margin-top:5px; margin-bottom:5px;">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-4 text-right">
+                                                <label>Фамилия</label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <p class="text-center" id="LastName"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="margin-top:5px; margin-bottom:5px;">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-4 text-right">
+                                                <label>Тел.</label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <p class="text-center" id="PhoneNumber"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="margin-top:5px; margin-bottom:5px;">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-4 text-right">
+                                                <label>Email</label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <p class="text-center" id="Email"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="margin-bottom:15px;">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-12">
+                                                <a class="btn btn-block btn-success" id="reservationAcceptBtn"
+                                                   onclick="Accommodation.confirmReservation();" role="button">Подтвердить</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </form>
+
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>

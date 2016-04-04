@@ -1,0 +1,215 @@
+﻿@using System.Web;
+@using Flat4Me.Identity
+@using Flat4Me.Core.Auth
+@using Newtonsoft.Json
+@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity.Owin
+@using Flat4Me.Web.Portal.App_Start
+@using Flat4Me.Data.Repository.Interfaces.Short
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1">
+    <title>@ViewBag.Title - Квартира для меня</title>
+
+    <script type="text/javascript">
+        var appInsights = window.appInsights || function (config) {
+            function s(config) { t[config] = function () { var i = arguments; t.queue.push(function () { t[config].apply(t, i) }) } } var t = { config: config }, r = document, f = window, e = "script", o = r.createElement(e), i, u; for (o.src = config.url || "//az416426.vo.msecnd.net/scripts/a/ai.0.js", r.getElementsByTagName(e)[0].parentNode.appendChild(o), t.cookie = r.cookie, t.queue = [], i = ["Event", "Exception", "Metric", "PageView", "Trace"]; i.length;) s("track" + i.pop()); return config.disableExceptionTracking || (i = "onerror", s("_" + i), u = f[i], f[i] = function (config, r, f, e, o) { var s = u && u(config, r, f, e, o); return s !== !0 && t["_" + i](config, r, f, e, o), s }), t
+        }({
+            instrumentationKey: "ba0cc6fd-6248-4959-8ad0-baa83100ff7e"
+        });
+
+        window.appInsights = appInsights;
+        appInsights.trackPageView();
+    </script>
+
+    @* STYLES *@
+
+    @* Font-awesome *@
+    @Styles.Render("~/Content/font-awesome/font-awesome.min.css")
+    @* Bootstrap *@
+    @Styles.Render("~/Content/bootstrap/bootstrap.min.css")
+    @Styles.Render("~/Content/bootstrap/bootstrap.spacelab.min.css")
+    @Styles.Render("~/Content/bootstrap-switch/bootstrap3/bootstrap-switch.min.css")
+    @* jQuery UI Styles *@
+    @Styles.Render("~/Content/jquery/themes/base/theme.css")
+    @* jquery-Timepicker *@
+    @Styles.Render("~/Content/jquery/jquery.timepicker.css")
+    @* jQuery FileUpload *@
+    @Styles.Render("~/Content/jQuery.FileUpload/css/jquery.fileupload.css")
+    @* Toastr *@
+    @Styles.Render("~/Content/toastr/toastr.min.css")
+    @* Typeahead *@
+    @Styles.Render("~/Content/typeahead/typeahead.css")
+    @* Bootstrap-Datepicker *@
+    @Styles.Render("~/Content/bootstrap-datepicker/bootstrap-datepicker3.min.css")
+    @* f4me *@
+    @Styles.Render("~/Content/f4me/site.css")
+
+
+    @* SCRIPTS *@
+
+    @* jQuery *@
+    @Scripts.Render("~/Scripts/jquery/jquery-2.1.3.min.js")
+    @Scripts.Render("~/Scripts/jquery/jquery-ui-1.11.4.min.js")
+    @Scripts.Render("~/Scripts/jquery/jquery.validate.min.js")
+    @Scripts.Render("~/Scripts/jquery/jquery.validate.unobtrusive.min.js")
+    @Scripts.Render("~/Scripts/jquery/jquery.blockUI.js")
+    @Scripts.Render("~/Scripts/jquery/jquery.timepicker.min.js")
+    @* Bootstrap *@
+    @Scripts.Render("~/Scripts/bootstrap/bootstrap.min.js")
+    @Scripts.Render("~/Scripts/bootstrap/bootstrap-switch.min.js")
+    @* jQuery FileUpload *@
+    @Scripts.Render("~/Scripts/loadImage/load-image.all.min.js")@* Shoul be first before file uploader *@
+    @Scripts.Render("~/Scripts/jquery.FileUpload/jquery.iframe-transport.js")
+    @Scripts.Render("~/Scripts/jquery.FileUpload/jquery.fileupload.js")
+    @Scripts.Render("~/Scripts/jquery.FileUpload/jquery.fileupload-process.js")
+    @Scripts.Render("~/Scripts/jquery.FileUpload/jquery.fileupload-image.js")
+    @* Toastr *@
+    @Scripts.Render("~/Scripts/toastr/toastr.min.js")
+
+    @* Typeahead *@
+    @Scripts.Render("~/Scripts/typeahead/typeahead.bundle.min.js")
+    @* Handlebars *@
+    @Scripts.Render("~/Scripts/handlebars/handlebars.min.js")
+    @* YandexMap *@
+    @Scripts.Render("//api-maps.yandex.ru/2.1/?lang=ru_RU")
+    @* Bootstrap-Datepicker *@
+    @Scripts.Render("~/Scripts/bootstrap-datepicker/bootstrap-datepicker.min.js")
+    @Scripts.Render("~/Scripts/bootstrap-datepicker/bootstrap-datepicker.ru.min.js")
+    @* F4Me tool *@
+    @Scripts.Render("~/Scripts/f4me/blockUI.js")
+    @Scripts.Render("~/Scripts/f4me/ajaxErrorHandler.js")
+    @Scripts.Render("~/Scripts/f4me/modalForm.js")
+    @Scripts.Render("~/Scripts/f4me/typeahead.js")
+    @* F4Me business *@
+    @Scripts.Render("~/Scripts/f4me/f4me.js")  @* Should be first before business scripts *@
+    @Scripts.Render("~/Scripts/f4me/accommodation.js")
+    @Scripts.Render("~/Scripts/f4me/city.js")
+    @Scripts.Render("~/Scripts/f4me/map.js")
+    @Scripts.Render("~/Scripts/f4me/user.js")
+    @Scripts.Render("~/Scripts/f4me/init.js")
+
+    <script type="text/javascript">
+        Init.globalInit();
+
+        $(document).ready(function () {
+            // TODO: Remove when production
+            $.ajaxSetup({ cache: false });
+
+            @{                
+                var userId = 0;
+                var email = string.Empty;
+                
+                if (User.Identity.IsAuthenticated)
+                {
+                    userId = User.Identity.GetUserId<int>();
+                    email = User.Identity.Name;
+                }                
+            }
+
+            User.UserId = @userId;
+            User.Email = '@email';
+
+            City.init({
+                cityUrl: '@Url.Action("City", "Home")'
+            });
+
+            Map.init({
+                mapApiUrl: '@Url.HttpRouteUrl(routeName: WebApiConfig.DefaultRoute, routeValues: new {  controller = "Map" })'
+            });
+
+            Accommodation.init({
+                // View url list
+                accommodationIndexUrl: '@Url.Action("Index", "Accommodation")',
+                // Api url list
+                accommodationApiUrl: '@Url.HttpRouteUrl(routeName: WebApiConfig.DefaultRoute, routeValues: new { controller = "Accommodation", id="" })',
+                photoApiUrl: '@Url.HttpRouteUrl(routeName: WebApiConfig.DefaultRoute, routeValues: new { controller = "Photo" })',
+                citySearchUrl: '@Url.HttpRouteUrl(routeName: WebApiConfig.DefaultRoute, routeValues: new {  controller = "City" })'
+            });
+
+            $(document).on("hidden.bs.modal", function (e) {
+                $(e.target).removeData("bs.modal").find(".modal-content").empty();
+            });
+
+            $("#modal").on("loaded.bs.modal", function () {
+                ModalForm.handleSubmit(ModalForm.makeSwitch);
+                ModalForm.makeSwitch();
+            });
+        });
+    </script>
+
+    @Html.Partial("AccommodationShort_ItemEditTemplate")
+    @Html.Partial("AccommodationShort_UserListTemplate")
+    @Html.Partial("AccommodationShort_ReservationList")
+
+    @RenderSection("scripts", required: false)
+</head>
+<body>
+    <div class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="@Url.Action("Index", "Home")" class="navbar-brand">
+                    Квартира Для Меня
+                </a>
+                <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#navbar-main" aria-expanded="false">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar-main" aria-expanded="false">
+                <ul class="nav navbar-nav navbar-right" style="margin-right:5px;">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                @User.Identity.Name
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Url.Action("Index", "Accommodation")">Мои объявления</a></li>
+                                <li><a href="#">Мой аккаунт</a></li>
+                                <li class="divider"></li>                                
+                                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Выйти</a></li>
+                                
+                            </ul>
+                        </li>
+                        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                        {
+                            @Html.AntiForgeryToken()
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    @*<div class="page-header"></div>*@
+    <img class="full-screen-background-image" src="~/Content/Images/background.jpg" />
+    @RenderBody()
+
+    @*<div class="container">
+            <footer>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <ul class="list-unstyled">
+                            <li class="pull-right"><a href="#top">Вверх</a></li>
+                            <li><p>&copy; @DateTime.Now.Year</p></li>
+                        </ul>
+                    </div>
+                </div>
+            </footer>
+        </div>*@
+
+    @* Modal container *@
+    <div class="modal fade" id="modal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

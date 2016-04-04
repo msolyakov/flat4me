@@ -1,0 +1,47 @@
+﻿{
+    "type": "FeatureCollection", 
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    53.192959,
+                    50.1307
+                ]
+            },
+            "properties": {
+                "balloonContent": "Самара, ул. Чернореченская, д. 13",
+                "hintContent": "Чернореченская, 13"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    53.201154,
+                    50.159527
+                ]
+            },
+            "properties": {
+                "balloonContent": "Самара, ул. Аксаковская, д. 169а",
+                "hintContent": "Аксаковская, 169а"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    53.259838,
+                    50.20871
+                ]
+            },
+            "properties": {
+                "balloonContent": "Самара, ул. Солнечная, д. 53",
+                "hintContent": "Солнечная, 53"
+            }
+        }
+    ]
+}

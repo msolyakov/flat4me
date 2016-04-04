@@ -1,0 +1,25 @@
+﻿@using Flat4Me.Web.Portal.App_LocalResources
+@* accommodationShortUserList *@
+<script id="accommodationShortUserListTemplate" type="text/x-handlebars-template">
+    {{#each this}}
+    <div class="col-md-4">
+        <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title" style="font-size: 20px; font-weight: bold;">{{Name}}</h3>
+                <a href="@Url.Action("ReservationList", "Accommodation")/{{AccommodationId}}" title="Брони">
+                    <span class="fa fa-book fa-2x"></span>
+                </a>
+            </div>
+            <div class="panel-body" style="padding: 0px;">
+                <a href="@Url.Action("Edit", "Accommodation")/{{AccommodationId}}">
+                    <img class="img-thumbnail" src="{{PhotoSmallPath}}">
+                    <div class="alert alert-warning" style="padding: 2px; left: 35px; bottom: 20px; font-size: 20px; font-weight: bold; position: absolute;">
+                        <span>от {{MinPriceAmount}} </span>
+                        <span class="fa fa-rub"></span>
+                    </div>
+                </a>                
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</script>

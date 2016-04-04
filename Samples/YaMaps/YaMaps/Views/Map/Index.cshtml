@@ -1,0 +1,40 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@{
+    ViewBag.Title = "Map - Index";
+}
+
+<script src="//api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+
+<style>
+    #map {
+        width: 100%;
+        height: 800px;
+    }
+</style>
+
+<h2>Тест карты</h2>
+
+<div id="map">
+    <script type="text/javascript">
+        ymaps.ready(initMap);
+
+        function initMap() {
+            // Создаем карту
+            myMap = new ymaps.Map('map', {
+                center: [53.22605, 50.170172], // Офтальмологическая больница имени Т. И. Ерошевского
+                zoom: 14
+            });
+
+            // Загружаем данные
+            $.getJSON('@Url.Content("~/api/map")', function (json) {
+                var geoObjects = ymaps.geoQuery(json)
+                    .addToMap(myMap)
+                    .applyBoundsToMap(myMap, { checkZoomRange: true });
+            });
+        }
+    </script>
+</div>

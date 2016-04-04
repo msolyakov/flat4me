@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Flat4Me.ImageServiceCore" GeneratedClassName="ImageServiceSettings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ImageStorageDiskPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\flat4me\img\content\1</Value>
+    </Setting>
+    <Setting Name="ImageUriPattern" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://localhost/img/content/1/{0}</Value>
+    </Setting>
+    <Setting Name="ReplaceExistingImage" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="AzureBlobConnectionString" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DefaultEndpointsProtocol=https;AccountName=flat4medev;AccountKey=9no2AuNRceSS9nDHkq3PtV81SpbozERxRlB2cUhuZ4aq6zrDxZOTnKfrC1W3dJ7ry+7P6Z1mHeys7tWIGF8IAg==</Value>
+    </Setting>
+    <Setting Name="AzureBlobContainer" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">photos</Value>
+    </Setting>
+    <Setting Name="AzureBlobPublicUriPattern" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://flat4medev.blob.core.windows.net/{0}/{1}</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

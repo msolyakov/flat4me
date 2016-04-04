@@ -1,0 +1,50 @@
+﻿@model YaMaps.Models.AccommodationShortLocation
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AccommodationShortLocation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Полный адрес
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FullAddress)
+        </dd>
+
+        <dt>
+            Широта
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PointY)
+        </dd>
+
+        <dt>
+            Долгота
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PointX)
+        </dd>
+
+        <dt>
+            Геоданные
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PointData)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AccommodationId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

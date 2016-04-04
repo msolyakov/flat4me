@@ -1,0 +1,51 @@
+﻿@model IEnumerable<YaMaps.Models.AccommodationShortLocation>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Полный адрес
+        </th>
+        <th>
+            Широта
+        </th>
+        <th>
+            Долгота
+        </th>
+        <th>
+            Геоданные
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FullAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PointY)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PointX)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PointData)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AccommodationId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AccommodationId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AccommodationId })
+        </td>
+    </tr>
+}
+
+</table>

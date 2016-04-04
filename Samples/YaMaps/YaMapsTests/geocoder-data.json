@@ -1,0 +1,61 @@
+﻿{
+    "response": {
+        "GeoObjectCollection": {
+            "metaDataProperty": {
+                "GeocoderResponseMetaData": {
+                    "request": "Самара, Чернореченская, 16",
+                    "found": "1",
+                    "results": "10" 
+                }
+            },
+            "featureMember": [
+                {
+                    "GeoObject": {
+                        "metaDataProperty": {
+                            "GeocoderMetaData": {
+                                "kind": "house",
+                                "text": "Россия, Самара, Чернореченская улица, 16",
+                                "precision": "exact",
+                                "AddressDetails": {
+                                    "Country": {
+                                        "AddressLine": "Самара, Чернореченская улица, 16",
+                                        "CountryNameCode": "RU",
+                                        "CountryName": "Россия",
+                                        "AdministrativeArea": {
+                                            "AdministrativeAreaName": "Самарская область",
+                                            "SubAdministrativeArea": {
+                                                "SubAdministrativeAreaName": "городской округ Самара",
+                                                "Locality": {
+                                                    "LocalityName": "Самара",
+                                                    "Thoroughfare": {
+                                                        "ThoroughfareName": "Чернореченская улица",
+                                                        "Premise": {
+                                                            "PremiseNumber": "16"
+
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Самара, Россия",
+                        "name": "Чернореченская улица, 16",
+                        "boundedBy": {
+                            "Envelope": {
+                                "lowerCorner": "50.125364 53.19113",
+                                "upperCorner": "50.141821 53.201013"
+
+                            }
+                        },
+                        "Point": {
+                            "pos": "50.133593 53.196072"
+                        }
+                    }
+                }
+            ]
+        }
+    } 
+}

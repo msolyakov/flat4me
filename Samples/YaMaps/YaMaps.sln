@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YaMaps", "YaMaps\YaMaps.csproj", "{29DF103A-D0BD-437E-B944-32B736C896C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YaMapsTests", "YaMapsTests\YaMapsTests.csproj", "{2A041D76-312C-4536-8CB6-2A913D497528}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{29DF103A-D0BD-437E-B944-32B736C896C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29DF103A-D0BD-437E-B944-32B736C896C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29DF103A-D0BD-437E-B944-32B736C896C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29DF103A-D0BD-437E-B944-32B736C896C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A041D76-312C-4536-8CB6-2A913D497528}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A041D76-312C-4536-8CB6-2A913D497528}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A041D76-312C-4536-8CB6-2A913D497528}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A041D76-312C-4536-8CB6-2A913D497528}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

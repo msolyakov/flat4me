@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="QueueProcessorService" GeneratedClassName="ServiceSettings">
+  <Profiles />
+  <Settings>
+    <Setting Name="QueueHost" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">localhost</Value>
+    </Setting>
+    <Setting Name="QueueVirtualHost" Type="System.String" Scope="User">
+      <Value Profile="(Default)">flat4me</Value>
+    </Setting>
+    <Setting Name="QueueName_ImagesToProcess" Type="System.String" Scope="User">
+      <Value Profile="(Default)">imagesToProcess</Value>
+    </Setting>
+    <Setting Name="QueueName_EmailsToSend" Type="System.String" Scope="User">
+      <Value Profile="(Default)">emailsToSend</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

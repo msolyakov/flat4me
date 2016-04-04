@@ -1,0 +1,18 @@
+﻿<script id="flatMainListTemplate" type="text/template">
+    {{#each this}}
+    <li>
+        <a data-link="accommodation" data-accommodation-id="{{AccommodationId}}">
+            <img src="{{PhotoSmallPath}}" alt="" title="{{FullAddress}}" class=" property_img" />
+        </a>
+        <span class="price">от {{MinPriceAmount}} <span class="fa fa-rub"></span></span>
+        <div class="property_details">
+            <h1>
+                <a data-link="accommodation" data-accommodation-id="{{AccommodationId}}">{{Name}}</a>
+            </h1>
+            <h2>
+                {{FullAddress}}
+            </h2>
+        </div>
+    </li>
+    {{/each}}
+</script>

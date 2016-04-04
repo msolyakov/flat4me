@@ -1,0 +1,18 @@
+﻿@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var accommodationId = @Url.RequestContext.RouteData.Values["id"];
+            Accommodation.loadForView(accommodationId);
+        });
+    </script>
+}
+
+@section bodyTop{
+    <div id="flatContainerTop">
+    </div>
+}
+
+<section class="listings">
+    <div id="flatContainerBody">
+    </div>
+</section>
