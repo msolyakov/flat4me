@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "";
+}
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var cityId = @Url.RequestContext.RouteData.Values["cityid"];
+            var cityPointY = '@Url.RequestContext.RouteData.Values["cityPointY"]'.replace(',','.');
+            var cityPointX = '@Url.RequestContext.RouteData.Values["cityPointX"]'.replace(',','.');
+            var cityZoom = @Url.RequestContext.RouteData.Values["cityZoom"];
+            var cityUrl = '@Url.RequestContext.RouteData.Values["city"]';
+        
+            Accommodation.getMainList({
+                cityId: cityId,
+                cityUrl: cityUrl,
+                cityPointY: cityPointY,
+                cityPointX: cityPointX,
+                cityZoom: cityZoom
+            });
+        });
+    </script>
+}
+
+@section bodyTop{
+    <!-- Map -->
+    <div id="mapContainer" style="min-height:475px;"></div>
+}
+
+<section class="search">
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-md-10">
+                <form action="#" method="post">
+                    <input type="text" id="search" name="search" placeholder="Искать рядом с адресом или станцией метро" autocomplete="off" />
+                    <input type="submit" id="submit_search" name="submit_search" />
+                </form>
+            </div>
+            <div class="col-md-2">
+                <a href="#" class="search_btn" title="Найти рядом с адресом">Найти</a>
+            </div>
+        </div>
+    </div>
+</section><!--  end search section  -->
+
+<section class="listings">
+    <div class="wrapper">
+        <div class="row">
+            <div id="searchDatepicker">
+                <div class="col-md-2">
+                    <div style="font-family:lato-bold,Helvetica,Arial,sans-serif;font-size: 16px !important;font-weight: bold;">
+                        Заезд
+                    </div>
+                    <input type="hidden" name="Checkin" />
+                    <input id="checkin" class="form-control actual_range text-left" type="text" />
+                </div>
+                <div class="col-md-2">
+                    <div style="font-family:lato-bold,Helvetica,Arial,sans-serif;font-size: 16px !important;font-weight: bold;">
+                        Выезд
+                    </div>
+                    <input type="hidden" name="Checkout" />
+                    <input id="checkout" class="form-control actual_range text-left" type="text" />
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div style="font-family:lato-bold,Helvetica,Arial,sans-serif;font-size: 16px !important;font-weight: bold;">
+                    Гости
+                </div>
+                <select class="form-control text-left" id="guests">
+                    <option value="1">&nbsp;1 гость</option>
+                    <option value="2">&nbsp;2 гостя</option>
+                    <option value="3">&nbsp;3 гостя</option>
+                    <option value="4">&nbsp;4 гостя</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <input type="hidden" id="minPrice" />
+                <input type="hidden" id="maxPrice" />
+                <div style="font-family:lato-bold,Helvetica,Arial,sans-serif;font-size: 16px !important;font-weight: bold;">
+                    Цена <span id="minPriceUI"></span> - <span id="maxPriceUI"></span> <span class="fa fa-rub"></span>
+                </div>
+                <div id="priceRange" class="noUi-extended" style="margin-top: 10px"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="listings">
+    <div class="wrapper">
+        <ul class="properties_list" id="accommodationListContainer"></ul>
+    </div>
+</section>	<!--  end listing section  -->

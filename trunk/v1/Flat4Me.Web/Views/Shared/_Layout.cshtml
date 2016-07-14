@@ -1,0 +1,255 @@
+﻿@using Flat4Me.Core.Auth
+@using Newtonsoft.Json
+@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity.Owin
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1" />
+    <title>@ViewBag.Title - Квартира для меня</title>
+
+    <script type="text/javascript">
+        var appInsights = window.appInsights || function (config) {
+            function s(config) { t[config] = function () { var i = arguments; t.queue.push(function () { t[config].apply(t, i) }) } } var t = { config: config }, r = document, f = window, e = "script", o = r.createElement(e), i, u; for (o.src = config.url || "//az416426.vo.msecnd.net/scripts/a/ai.0.js", r.getElementsByTagName(e)[0].parentNode.appendChild(o), t.cookie = r.cookie, t.queue = [], i = ["Event", "Exception", "Metric", "PageView", "Trace"]; i.length;) s("track" + i.pop()); return config.disableExceptionTracking || (i = "onerror", s("_" + i), u = f[i], f[i] = function (config, r, f, e, o) { var s = u && u(config, r, f, e, o); return s !== !0 && t["_" + i](config, r, f, e, o), s }), t
+        }({
+            instrumentationKey: "e79f18ba-e00a-49e1-8901-fb9e0752f68f"
+        });
+
+        window.appInsights = appInsights;
+        appInsights.trackPageView();
+    </script>
+        
+    @* YandexMap. There is no local copy *@
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+    
+    @Styles.Render("~/content/css")    
+    @Scripts.Render("~/bundles/js")
+
+    <script type="text/javascript">
+        Init.globalInit();
+
+        $(document).ready(function () {
+            // TODO: Remove when production
+            //$.ajaxSetup({ cache: false });
+
+            @{
+                var userId = 0;
+                var email = string.Empty;
+
+                if (User.Identity.IsAuthenticated)
+                {
+                    userId = User.Identity.GetUserId<int>();
+                    email = User.Identity.Name;
+                }
+            }
+
+            User.LoginUrl = '@Url.Action("Login","Account")';
+            User.AccountApiControllerUrl = '@Url.HttpRouteUrl(routeName: WebApiConfig.DefaultRoute, routeValues: new {  controller = "Account" })';
+            User.UserId = @userId;
+            User.Email = '@email';
+
+            User.loadInfo();
+
+            Map.init({
+                mapApiUrl: '@Url.HttpRouteUrl(routeName: WebApiConfig.DefaultRoute, routeValues: new {  controller = "Map" })'
+            });
+
+            Accommodation.init({
+                // Api url list
+                accommodationApiUrl: '@Url.HttpRouteUrl(routeName: WebApiConfig.DefaultRoute, routeValues: new { controller = "Accommodation", id="" })',
+                searchApiUrl: '@Url.HttpRouteUrl(routeName: WebApiConfig.DefaultRoute, routeValues: new { controller = "Search", id="" })',
+            });
+
+            /*  Hamburger Menu & Icon  */
+            $('.hamburger').on('click', function(e){
+
+                e.preventDefault();
+                $(this).toggleClass('opned');
+                $('header nav').toggleClass('active');
+            });
+        });
+
+
+    </script>
+
+    @RenderSection("scripts", required: false)
+</head>
+
+<body>
+    @if (IsSectionDefined("bodyTop"))
+    {
+        <section class="search" style="height: 575px;">
+            <header>
+                <div class="wrapper">
+                    <a href="@Url.Action("Index", "Home")" class="logo-text">
+                        <span class="fa-2x">Квартира для меня</span>
+                        <span>beta</span>
+                    </a>
+                    <a href="#" class="hamburger"></a>
+                    <nav>
+                        <ul>
+                            <li><a href="#">Сдать свое жилье</a></li>
+                            <li><a href="#">О нас</a></li>
+                            <li><a href="#">Контакты</a></li>
+                        </ul>
+                        <a href="#" class="login_btn">Войти</a>
+                    </nav>
+                </div>
+            </header><!--  end header section  -->
+            @RenderSection("bodyTop", required: false)
+        </section>
+    }    
+
+    @RenderBody()
+
+    <footer id="footer">
+        <div class="wrapper footer">
+            <ul>
+                <li class="links">
+                    <ul>
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Условия</a></li>
+                    </ul>
+                </li>
+
+                <li class="links">
+                    <ul>
+                        
+                        <li><a href="#">Поддержка</a></li>
+                        <li><a href="#">Контакты</a></li>
+                    </ul>
+                </li>
+
+                <li class="about">
+                    <p>Посуточная аренда квартир</p>
+                    <p>Близко - Удобно - Комфортно</p>
+                    <ul>
+                        <li><a href="http://facebook.com/flat4me" class="facebook" target="_blank"></a></li>
+                        <li><a href="http://twitter.com/flat4me" class="twitter" target="_blank"></a></li>
+                        <li><a href="http://plus.google.com/+flat4me" class="google" target="_blank"></a></li>
+                        <li><a href="#" class="skype"></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="copyrights wrapper">
+            © 2015 <a href="http://flat4.me" target="_blank" class="ph_link" title="Квартира для меня">Flat4.me</a>.
+            Template by <a href="http://pixelhint.com/" target="_blank" class="ph_link" title="pixelhint.com">pixelhint.com</a>
+        </div>
+    </footer><!--  end footer  -->
+
+    @* Login modal *@
+    <div id="loginModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div>
+
+                    <a href="https://www.facebook.com/v2.0/dialog/oauth?client_id=138566025676&amp;redirect_uri=https%3A%2F%2Fwww.airbnb.com%2Fauthenticate&amp;scope=email%2Cuser_birthday%2Cuser_likes%2Cuser_education_history%2Cuser_hometown%2Cuser_location%2Cuser_friends" class="fb-button fb-blue btn icon-btn btn-block btn-large row-space-1 btn-facebook" data-populate_uri="" data-redirect_uri="https://www.airbnb.com/authenticate">
+                        <span class="icon-container">
+                            <i class="icon icon-facebook"></i>
+                        </span>
+                        <span class="text-container">
+                            Log in with Facebook
+                        </span>
+                    </a>
+
+
+                    <a href="/oauth_connect?service=google&amp;from=google_signup" class="btn icon-btn btn-block btn-large row-space-1 btn-google">
+                        <span class="icon-container">
+                            <i class="icon icon-google-plus"></i>
+                        </span>
+                        <span class="text-container">
+                            Log in with Google
+                        </span>
+                    </a>
+
+
+                    <div class="signup-or-separator">
+                        <span class="h6 signup-or-separator--text">or</span>
+                        <hr>
+                    </div>
+
+                    <form accept-charset="UTF-8" action="/authenticate" class="signin-form login-form" data-action="Signin" method="post">
+                        <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="V4$.airbnb.com$l5ZIffopivY$xJDOFD8CBMaPepvKtkgcEoTj6iSsp1wOdJM4glvF7ms="></div>
+                        <input id="from" name="from" type="hidden" value="email_login">
+
+
+
+                        <div class="control-group row-space-1">
+                            <input class="decorative-input inspectletIgnore" id="signin_email" name="email" placeholder="Email Address" type="email">
+                        </div>
+                        <div class="control-group row-space-2">
+                            <input class="decorative-input inspectletIgnore" id="signin_password" name="password" placeholder="Password" type="password">
+                        </div>
+
+                        <div class="clearfix row-space-2">
+                            <label for="remember_me2" class="checkbox remember-me">
+                                <input type="checkbox" name="remember_me" id="remember_me2" value="true" class="remember_me">
+                                Remember me
+                            </label>
+                            <a href="/forgot_password" class="forgot-password pull-right">Forgot password?</a>
+                        </div>
+
+                        <button type="submit" class="btn btn-block btn-primary btn-large" id="user-login-btn">
+                            Log In
+                        </button>
+                    </form>
+                    <hr>
+                    <div class="text-left">
+                        Don't have an account?
+                        <a href="/signup_login" class="modal-link link-to-signup-in-login" data-modal-href="/signup_modal" data-modal-type="signup">
+                            Sign up
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
+    <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+        <!-- The container for the modal slides -->
+        <div class="slides"></div>
+        <!-- Controls for the borderless lightbox -->
+        <h3 class="title"></h3>
+        <a class="prev">‹</a>
+        <a class="next">›</a>
+        <a class="close">×</a>
+        <a class="play-pause"></a>
+        <ol class="indicator"></ol>
+    </div>
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function (d, w, c) {
+            (w[c] = w[c] || []).push(function() {
+                try {
+                    w.yaCounter27060424 = new Ya.Metrika({
+                        id:27060424,
+                        clickmap:true,
+                        trackLinks:true,
+                        accurateTrackBounce:true,
+                        webvisor:true
+                    });
+                } catch(e) { }
+            });
+
+            var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+            if (w.opera == "[object Opera]") {
+                d.addEventListener("DOMContentLoaded", f, false);
+            } else { f(); }
+        })(document, window, "yandex_metrika_callbacks");
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/27060424" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+</body>
+</html>

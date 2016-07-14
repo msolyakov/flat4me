@@ -1,0 +1,46 @@
+﻿<script id="flatTemplateTop" type="text/x-handlebars-template">
+    
+
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        {{!-- Indicators --}}
+        <ol class="carousel-indicators">
+            {{!-- Static map indicator --}}
+            <li data-target="#carousel-example-generic" data-slide-to="0"
+                data-toggle="tooltip"
+                data-placement="top"
+                data-original-title="Карта">
+                <span class="fa fa-map-marker fa-2x" aria-hidden="true"></span>
+            </li>
+            {{#each PhotoList}}
+            <li data-target="#carousel-example-generic" data-slide-to="{{Index}}" class="{{#if IsPrimary}}active{{/if}}">
+                <span class="fa fa-circle-o-notch fa-1x" aria-hidden="true"></span>
+            </li>
+            {{/each}}
+        </ol>
+        {{!-- Wrapper for slides --}}
+        <div class="carousel-inner" role="listbox">
+            <div id="mapContainer" class="item"></div>
+
+            {{#each PhotoList}}
+            <div class="item {{#if IsPrimary}}active{{/if}}">
+                <div style="background-image:url({{LargePath}});" class="cover-photo"
+                     data-img-path="{{LargePath}}"
+                     data-img-title="Уютная большая кровать"></div>
+                <div class="carousel-caption">
+                    <h2 style="color:white;"><b>Спальня</b></h2>
+                    <p>Уютная большая кровать</p>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        {{!-- Controls --}}
+        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+            <span class="icon-prev" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+            <span class="icon-next" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</script>

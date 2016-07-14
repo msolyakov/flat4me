@@ -1,0 +1,15 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var accommodationId = '@Url.RequestContext.RouteData.Values["Id"]';
+            Accommodation.loadForEdit(accommodationId);
+        });
+    </script>
+}
+
+<div id="createPageContainer">
+</div>

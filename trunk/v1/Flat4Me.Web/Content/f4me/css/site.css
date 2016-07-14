@@ -1,0 +1,350 @@
+﻿/*.container {
+    width: 100%;
+}*/
+
+/*.tt-input::-ms-clear {
+    display: none;
+}*/
+
+.horizontal-center {
+    width: 100%;
+    overflow: auto;
+    margin: auto;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+/*.twitter-typeahead {
+    width: 100%;
+}
+
+.navbar {
+    margin-bottom: 0px;
+}*/
+
+.carousel {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.carousel-inner > .item {
+    height: 500px;
+}
+
+.carousel > .carousel-control {
+    margin-top: 400px;
+}
+
+.carousel-indicators > li,
+.carousel-indicators > li.active {
+    margin: 5px;
+    border-radius: 0;
+    border: none;
+    text-indent: 0;
+    background: none;
+}
+
+    .carousel-indicators > li > span {
+        color: #f0ad4e;
+    }
+
+    .carousel-indicators > li.active > span {
+        color: #337ab7;
+    }
+
+.cover-photo {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+    height: 100%;
+    cursor: pointer;
+}
+
+/* Use for indicating */
+.checked {
+}
+
+.full-screen-background-image {
+    z-index: -999;
+    min-height: 100%;
+    min-width: 124px;
+    width: 100%;
+    height: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.main-search-pane {
+    position: relative;
+    height: 150px;
+    margin: 350px 0px 0px 0px;
+    /*opacity: 0.85; /* Opacity for Modern Browsers */
+    /*filter: alpha(opacity=85); /* Opacity for IE8 and lower */
+    background: rgba(237,237,237, 0.85);
+}
+
+.col-centered {
+    float: none;
+    margin: 0 auto;
+}
+
+.accview-top-menu-lg {
+    width: 535px;
+}
+
+    .accview-top-menu-lg .col-xs-3 {
+        width: 130px;
+        text-align: center;
+        cursor: pointer;
+    }
+
+.accview-top-menu-xs {
+    width: 220px;
+}
+
+    .accview-top-menu-xs .col-xs-3 {
+        width: 50px;
+        text-align: center;
+        cursor: pointer;
+    }
+
+.accview-bottom-icon {
+    text-align: center;
+}
+
+.icon-with-desc {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.icon-center {
+    text-align: center;
+}
+
+.icon-text-container {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+/* noUI customization */
+.noUi-horizontal.noUi-extended {
+    height: 10px;
+}
+
+    .noUi-horizontal.noUi-extended .noUi-handle {
+        width: 18px;
+        height: 18px;
+        left: -9px;
+        top: -5px;
+        border-radius: 50%;
+    }
+
+.noUi-extended .noUi-handle:before,
+.noUi-extended .noUi-handle:after {
+    height: 10px;
+    width: 1px;
+    left: 6px;
+    top: 3px;
+}
+
+.noUi-extended .noUi-handle:after {
+    left: 9px;
+}
+/* noUI pips customization */
+.noUi-extended .noUi-pips-horizontal {
+    padding: 10px 0;
+    height: 30px;
+    top: 100%;
+    left: 0;
+    width: 100%;
+}
+
+.noUi-extended .noUi-value-horizontal {
+    margin-left: -20px;
+    padding-top: 10px;
+}
+
+    .noUi-extended .noUi-value-horizontal.noUi-value-sub {
+        padding-top: 5px;
+    }
+
+.noUi-extended .noUi-marker-horizontal.noUi-marker {
+    margin-left: -1px;
+    width: 2px;
+    height: 3px;
+}
+
+.noUi-extended .noUi-marker-horizontal.noUi-marker-sub {
+    height: 5px;
+}
+
+.noUi-extended .noUi-marker-horizontal.noUi-marker-large {
+    height: 10px;
+}
+
+.noUi-extended .noUi-connect {
+    background: #ffdf60;
+}
+
+/*La Casa Customization*/
+/*
+header {
+    background: #95badf;
+    height: 75px;
+}
+*/
+
+header .logo-text {
+    margin-top: 29px;
+    float: left;
+    text-decoration: none;
+    color: #fff;
+    font-family: "lato-regular", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+}
+
+header a.hamburger {
+    margin-top: 29px;
+}
+
+
+/*header nav ul{
+    margin-top: 30px;
+}*/
+
+header nav .login_btn {
+    margin-top: 28px;
+}
+
+
+.search {
+    /*background: #95badf;*/
+    height: 75px;
+}
+
+    .search .search_btn {
+        margin-top: 13px;
+    }
+
+    .search .advanced_search_icon {
+        margin-top: 24px;
+    }
+
+    .search #search {
+        height: 75px;
+    }
+
+
+.listings ul.properties_list li img.property_img {
+    min-height: 174px !important;
+    max-height: 191px !important;
+}
+
+/*Hero section*/
+.hero {
+    background: url('../img/bg-1.jpg') no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+    height: 100%;
+}
+
+@media (max-width: 767px) {
+    .hero {
+        height: 350px !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .hero {
+        height: 500px !important;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .hero {
+        height: 550px !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .hero {
+        height: 800px !important;
+    }
+}
+
+/*Caption Title Logo*/
+.hero .caption h2 {
+    font-size: 148px;
+}
+
+.hero .caption h3 {
+    font-size: 20px;
+}
+
+@media (max-width: 767px) {
+    header .logo-text {
+        font-size: 24px !important;
+    }
+
+    .hero .caption {
+        margin-top: -70px;
+    }
+
+        .hero .caption h2 {
+            font-size: 50px;
+        }
+
+        .hero .caption h3 {
+            font-size: 12px;
+        }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    header .logo-text {
+        font-size: 15px !important;
+    }
+
+    .hero .caption h2 {
+        font-size: 85px;
+    }
+
+    .hero .caption h3 {
+        font-size: 18px;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .hero .caption {
+        margin-top: -145px;
+    }
+
+        .hero .caption h2 {
+            font-size: 128px;
+        }
+
+        .hero .caption h3 {
+            font-size: 16px;
+        }
+}
+
+@media (min-width: 1200px) {
+    header .logo-text {
+        font-size: 27px !important;
+    }
+    .hero .caption {
+        margin-top: -205px;
+    }
+
+    .hero .caption h2 {
+        font-size: 148px;
+    }
+
+    .hero .caption h3 {
+        font-size: 20px;
+    }
+}

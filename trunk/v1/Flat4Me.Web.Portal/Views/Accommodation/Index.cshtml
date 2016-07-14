@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            Accommodation.getMainList({
+                resultContainerSelector: '#accommodationListContainer',
+                blockElementSelector: '#accommodationMainContainer',
+                userId: User.UserId,
+                listTemplate: Accommodation.ShortUserListTemplate
+            });
+        });
+    </script>
+}
+
+<div class="container">
+    <a class="btn btn-primary" href="@Url.Action("Create")">
+        Добавить
+    </a>
+    <a class="btn btn-primary" href="@Url.Action("SendMail")">
+        Мейл
+    </a>
+</div>
+
+<div id="accommodationMainContainer">
+    <div id="accommodationListContainer" class="container-fluid">
+    </div>
+</div>

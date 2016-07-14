@@ -1,0 +1,16 @@
+﻿@using Flat4Me.Web.Portal.App_LocalResources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            Accommodation.loadForCreate();            
+        });
+    </script>
+}
+
+<div id="createPageContainer">    
+</div>

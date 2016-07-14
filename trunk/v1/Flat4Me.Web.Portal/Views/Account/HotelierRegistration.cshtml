@@ -1,0 +1,140 @@
+﻿@model Flat4Me.Web.Portal.Models.HotelierRegistrationViewModel
+@{
+    ViewBag.Title = "Регистрация хотельера";
+}
+
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            Typeahead.serverSideFor("#cityTypeahead", "#CityId", Accommodation.CitySearchUrl);
+            $('#CheckinFrom').timepicker({ 'timeFormat': 'H:i' });
+            $('#CheckinTo').timepicker({ 'timeFormat': 'H:i' });
+            $('#CheckoutFrom').timepicker({ 'timeFormat': 'H:i' });
+            $('#CheckoutTo').timepicker({ 'timeFormat': 'H:i' });
+
+            F4Me.makeAllCheckBoxAsBootstrapPhrases('Есть', 'Нет');
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+}
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<div class="container">
+    <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-2 col-lg-4 col-lg-offset-4">
+        <div class="well">
+            <div class="row">
+                <div class="col-md-12">
+                    @using (Html.BeginForm("HotelierRegistration", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <h4>Зарегистрируйтесь как Хотельер</h4>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">
+                                Город
+                            </label>
+                            <div class="col-md-9">
+                                <input id="CityId" name="CityId" value="@Model.CityId"
+                                       type="hidden" data-selector="#cityTypeahead" />
+                                <input id="cityTypeahead" value="@Model.CityName"
+                                       type="text" class="form-control" placeholder="Авто поиск" />
+                                @Html.ValidationMessageFor(m => m.CityId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">
+                                Заезд гостей
+                            </label>
+                            <div class="col-md-9">
+                                <div class="col-md-6 text-center" style="padding-left:0px; padding-right:2px;">
+                                    <div>
+                                        <input id="CheckinFrom" name="CheckinFrom" value="@Model.CheckinFrom"
+                                               type="text" class="form-control text-center" />
+                                        @Html.ValidationMessageFor(m => m.CheckinFrom, "", new { @class = "text-danger" })
+                                    </div>
+                                    <small>С</small>
+                                </div>
+                                <div class="col-md-6 text-center" style="padding-left:2px; padding-right:0px;">
+                                    <div>
+                                        <input id="CheckinTo" name="CheckinTo" value="@Model.CheckinTo"
+                                               type="text" class="form-control text-center" />
+                                        @Html.ValidationMessageFor(m => m.CheckinTo, "", new { @class = "text-danger" })
+                                    </div>
+                                    <small>До (не обязательно)</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">
+                                Выезд
+                            </label>
+                            <div class="col-md-9">
+                                <div class="col-md-6 text-center" style="padding-left:0px; padding-right:2px;">
+                                    <div>
+                                        <input id="CheckoutFrom" name="CheckoutFrom" value="@Model.CheckoutFrom"
+                                               type="text" class="form-control text-center" />
+                                        @Html.ValidationMessageFor(m => m.CheckoutFrom, "", new { @class = "text-danger" })
+                                    </div>
+                                    <small>С</small>
+                                </div>
+                                <div class="col-md-6 text-center" style="padding-left:2px; padding-right:0px;">
+                                    <div>
+                                        <input id="CheckoutTo" name="CheckoutTo" value="@Model.CheckoutTo"
+                                               type="text" class="form-control text-center" />
+                                        @Html.ValidationMessageFor(m => m.CheckoutTo, "", new { @class = "text-danger" })
+                                    </div>
+                                    <small>До (не обязательно)</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">
+                                Трансфер из аэропорта
+                            </label>
+                            <div class="col-md-9">
+                                @Html.CheckBoxFor(m => m.HasAirportTransfer, new { @class = "form-control" })
+                                <input type="number" name="EstimatedAirportTransferCost" class="form-control"
+                                       placeholder="Примерная стоимость"
+                                       data-toggle="tooltip"
+                                       data-placement="left"
+                                       data-original-title="Напишите примерную стоимость +-200р." />
+                                @Html.ValidationMessageFor(m => m.EstimatedAirportTransferCost, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">
+                                Трансфер из ж/д вокзала
+                            </label>
+                            <div class="col-md-9">
+                                @Html.CheckBoxFor(m => m.HasTrainTransfer, new { @class = "form-control" })                                
+                                <input type="number" name="EstimatedTrainTransferCost" class="form-control"
+                                       placeholder="Примерная стоимость"
+                                       data-toggle="tooltip"
+                                       data-placement="left"
+                                       data-original-title="Напишите примерную стоимость +-200р." />
+                                @Html.ValidationMessageFor(m => m.EstimatedTrainTransferCost, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <input type="submit" class="btn btn-default pull-right" value="Отправить на подтверждение" />
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

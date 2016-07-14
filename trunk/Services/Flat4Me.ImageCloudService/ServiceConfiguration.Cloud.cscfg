@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ServiceConfiguration serviceName="Flat4Me.ImageCloudService" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="*" schemaVersion="2014-06.2.4">
-  <Role name="Flat4Me.ImageWorkerRole.FlatPhoto">
-    <Instances count="1" />
-  </Role>
-</ServiceConfiguration>
