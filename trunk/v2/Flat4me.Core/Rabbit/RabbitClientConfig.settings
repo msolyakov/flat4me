@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Flat4Me.Core.Rabbit" GeneratedClassName="RabbitClientConfig">
+  <Profiles />
+  <Settings>
+    <Setting Name="RabbitHost" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">f4me0dev-vpc.cloudapp.net</Value>
+    </Setting>
+    <Setting Name="RabbitPort" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">5672</Value>
+    </Setting>
+    <Setting Name="RabbitUser" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">f4rabbit</Value>
+    </Setting>
+    <Setting Name="RabbitPassword" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1qaz@WSX3edc</Value>
+    </Setting>
+    <Setting Name="DefaultVirtualHost" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

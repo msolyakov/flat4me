@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B8347618-557D-408F-8B4B-9260382584E4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Flat4me.Core</RootNamespace>
+    <AssemblyName>Flat4me.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Dapper, Version=1.50.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.50.1\lib\net451\Dapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RabbitMQ.Client, Version=3.6.3.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
+      <HintPath>..\packages\RabbitMQ.Client.3.6.3\lib\net45\RabbitMQ.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Caching\Extensions.cs" />
+    <Compile Include="Caching\ICacheManager.cs" />
+    <Compile Include="Caching\MemoryCacheManager.cs" />
+    <Compile Include="Consts\AccommodationTypeList.cs" />
+    <Compile Include="Consts\CurrencyList.cs" />
+    <Compile Include="Consts\ImageResolutionList.cs" />
+    <Compile Include="Consts\UserRoleList.cs" />
+    <Compile Include="Data\Azure\StorageLogRepository.cs" />
+    <Compile Include="Data\Azure\StorageSettings.Designer.cs" />
+    <Compile Include="Data\BaseRepository.cs" />
+    <Compile Include="Data\Caching\SearchRepository.CacheKeys.cs" />
+    <Compile Include="Data\Caching\SearchRepository.cs" />
+    <Compile Include="Data\Objects\AccommodationDistanceDTO.cs" />
+    <Compile Include="Data\Objects\AccommodationLocationDTO.cs" />
+    <Compile Include="Data\Objects\AccommodationShortDTO.cs" />
+    <Compile Include="Data\Objects\AccommodationShortMainDTO.cs" />
+    <Compile Include="Data\Objects\Auth\UserClaimDTO.cs" />
+    <Compile Include="Data\Objects\Auth\UserDTO.cs" />
+    <Compile Include="Data\Objects\Auth\UserLoginDTO.cs" />
+    <Compile Include="Data\Objects\Auth\UserPhoneDTO.cs" />
+    <Compile Include="Data\Objects\CityDistanceCodeDTO.cs" />
+    <Compile Include="Data\Objects\CityDTO.cs" />
+    <Compile Include="Data\Objects\CityLandmarkDTO.cs" />
+    <Compile Include="Data\Objects\PhotoDTO.cs" />
+    <Compile Include="Data\Objects\PriceDTO.cs" />
+    <Compile Include="Data\Objects\HotelierProfileDTO.cs" />
+    <Compile Include="Data\Objects\HotelierProfileUnapprovedDTO.cs" />
+    <Compile Include="Data\Objects\ReservationDTO.cs" />
+    <Compile Include="Data\Extensions\SearchExtensions.cs" />
+    <Compile Include="Data\IAccommodationRepository.cs" />
+    <Compile Include="Data\ICityRepository.cs" />
+    <Compile Include="Data\IHotelierProfileRepository.cs" />
+    <Compile Include="Data\ILogRepository.cs" />
+    <Compile Include="Data\IMapRepository.cs" />
+    <Compile Include="Data\IPhotoRepository.cs" />
+    <Compile Include="Data\IReservationRepository.cs" />
+    <Compile Include="Data\ISearchRepository.cs" />
+    <Compile Include="Data\IUserRepository.cs" />
+    <Compile Include="Data\MsSql\AccommodationRepository.cs" />
+    <Compile Include="Data\MsSql\Auth\UserRepository.cs" />
+    <Compile Include="Data\MsSql\CityRepository.cs" />
+    <Compile Include="Data\MsSql\MapRepository.cs" />
+    <Compile Include="Data\MsSql\PhotoRepository.cs" />
+    <Compile Include="Data\MsSql\Short\HotelierProfileRepository.cs" />
+    <Compile Include="Data\MsSql\Short\ReservationRepository.cs" />
+    <Compile Include="Data\MsSql\SqlTransactionExtension.cs" />
+    <Compile Include="Helpers\AsyncHelper.cs" />
+    <Compile Include="Helpers\Ensure.cs" />
+    <Compile Include="Helpers\RegexUtils.cs" />
+    <Compile Include="Helpers\StringExtensions.cs" />
+    <Compile Include="Helpers\StringInjectExtension.cs" />
+    <Compile Include="Mail\MailHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rabbit\QueueProcessorBase.cs" />
+    <Compile Include="Rabbit\RabbitClientConfig1.Designer.cs" />
+    <Compile Include="Rabbit\RabbitFacade.cs" />
+    <Compile Include="Rabbit\RabbitFacadeConsts.cs" />
+    <Compile Include="Rabbit\RabbitFacadeStatic.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\Azure\StorageSettings.settings" />
+    <None Include="packages.config" />
+    <None Include="Rabbit\RabbitClientConfig.settings" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

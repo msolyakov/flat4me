@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Flat4Me.Data.Repository.Azure" GeneratedClassName="StorageSettings">
+  <Profiles />
+  <Settings>
+    <Setting Name="LogTableName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">CommonLog</Value>
+    </Setting>
+    <Setting Name="ConnectionString" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DefaultEndpointsProtocol=https;AccountName=flat4melog;AccountKey=pMBE38WS3/W+1772TooaZxcxvAiPJYzuCgP+muTOddZBrgc8Jh8UA3GvuANiyqAb4tL2shrD/31pc9i6keO1vA==</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
