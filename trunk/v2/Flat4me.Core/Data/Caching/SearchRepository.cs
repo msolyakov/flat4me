@@ -2,7 +2,7 @@
 using Flat4me.Core.Data.Objects;
 using Flat4me.Core.Data;
 using Flat4me.Core.Data.MsSql;
-// using Flat4me.Geo; - TODO: serach by point should be refactored
+// using Flat4me.Maps; - TODO: serach by point should be refactored
 using System;
 using System.Collections.Generic;
 using System.Linq;

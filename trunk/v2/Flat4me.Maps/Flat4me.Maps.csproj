@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,11 +44,51 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseGeocoder.cs" />
+    <Compile Include="GeoHelper.cs" />
+    <Compile Include="IGeocoder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Yandex\ApiDataMapper.cs" />
+    <Compile Include="Yandex\GeocoderDataMapper.cs" />
+    <Compile Include="Yandex\GeocoderWrapper.cs" />
+    <Compile Include="Yandex\Types\ApiData.cs" />
+    <Compile Include="Yandex\Types\ApiData.Feature.cs" />
+    <Compile Include="Yandex\Types\ApiData.Geometry2.cs" />
+    <Compile Include="Yandex\Types\ApiData.Properties2.cs" />
+    <Compile Include="Yandex\Types\GeocoderResponse.AddressDetails2.cs" />
+    <Compile Include="Yandex\Types\GeocoderResponse.AdministrativeArea2.cs" />
+    <Compile Include="Yandex\Types\GeocoderResponse.BoundedBy2.cs" />
+    <Compile Include="Yandex\Types\GeocoderResponse.Country2.cs" />
+    <Compile Include="Yandex\Types\GeocoderResponse.cs" />
+    <Compile Include="Yandex\Types\GeocoderResponse.Envelope2.cs" />
+    <Compile Include="Yandex\Types\GeocoderResponse.FeatureMember2.cs" />
+    <Compile Include="Yandex\Types\GeocoderResponse.GeocoderMetaData2.cs" />
+    <Compile Include="Yandex\Types\GeocoderResponse.GeocoderResponseMetaData2.cs" />
+    <Compile Include="Yandex\Types\GeocoderResponse.GeoObject2.cs" />
+    <Compile Include="Yandex\Types\GeocoderResponse.GeoObjectCollection2.cs" />
+    <Compile Include="Yandex\Types\GeocoderResponse.Locality2.cs" />
+    <Compile Include="Yandex\Types\GeocoderResponse.MetaDataProperty2.cs" />
+    <Compile Include="Yandex\Types\GeocoderResponse.MetaDataProperty3.cs" />
+    <Compile Include="Yandex\Types\GeocoderResponse.Point2.cs" />
+    <Compile Include="Yandex\Types\GeocoderResponse.Premise2.cs" />
+    <Compile Include="Yandex\Types\GeocoderResponse.Response2.cs" />
+    <Compile Include="Yandex\Types\GeocoderResponse.SubAdministrativeArea2.cs" />
+    <Compile Include="Yandex\Types\GeocoderResponse.Thoroughfare2.cs" />
+    <Compile Include="Yandex\Types\Partials\ApiData.Feature.Partial.cs" />
+    <Compile Include="Yandex\Types\Partials\ApiData.Properties2.Partial.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Google\" />
-    <Folder Include="Yandex\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Flat4me.Core\Flat4me.Core.csproj">
+      <Project>{b8347618-557d-408f-8b4b-9260382584e4}</Project>
+      <Name>Flat4me.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
